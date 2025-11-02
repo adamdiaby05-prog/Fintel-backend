@@ -24,7 +24,6 @@ RUN chmod +x create_tables.sh || true
 # Exposer le port
 EXPOSE 8000
 
-# Commande pour démarrer l'application
-# Les tables sont déjà créées, donc on démarre directement
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Commande pour démarrer l'application avec logging détaillé
+CMD ["sh", "-c", "echo '🚀 Démarrage du backend Fintel...' && uvicorn app.main:app --host 0.0.0.0 --port 8000 --log-level info"]
 

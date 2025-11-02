@@ -23,6 +23,8 @@ except Exception as e:
     logger.error(f"❌ Erreur lors de la création des tables: {e}")
     import traceback
     logger.error(traceback.format_exc())
+    # Ne pas faire crash l'application - les tables existent peut-être déjà
+    logger.warning("⚠️ Continuation du démarrage malgré l'erreur de création des tables")
 
 # Créer l'application FastAPI
 app = FastAPI(
