@@ -24,6 +24,7 @@ RUN chmod +x create_tables.sh || true
 # Exposer le port
 EXPOSE 8000
 
-# Script de démarrage qui crée les tables puis démarre l'application
-CMD ["sh", "-c", "python -c 'from app.core.database import Base, engine; from app.models.user import User, OTP; from app.models.transaction import Transaction, Wallet; Base.metadata.create_all(bind=engine); print(\"✅ Tables créées\")' && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+# Commande pour démarrer l'application
+# Les tables sont déjà créées, donc on démarre directement
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
