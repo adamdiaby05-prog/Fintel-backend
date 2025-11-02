@@ -1,0 +1,3 @@
+"""Fintel FastAPI application package."""
+
+
