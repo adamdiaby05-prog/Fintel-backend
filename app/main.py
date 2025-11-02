@@ -3,9 +3,26 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1 import auth, transactions, user
 from app.core.database import engine, Base
 from config import settings
+import logging
+
+# Configurer le logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Importer tous les modèles pour qu'ils soient enregistrés dans Base.metadata
+from app.models.user import User, OTP
+from app.models.transaction import Transaction, Wallet
 
 # Créer les tables de base de données
-Base.metadata.create_all(bind=engine)
+try:
+    logger.info("🔄 Création des tables dans la base de données...")
+    logger.info(f"📊 Connexion à: {settings.database_url}")
+    Base.metadata.create_all(bind=engine)
+    logger.info("✅ Toutes les tables ont été créées avec succès!")
+except Exception as e:
+    logger.error(f"❌ Erreur lors de la création des tables: {e}")
+    import traceback
+    logger.error(traceback.format_exc())
 
 # Créer l'application FastAPI
 app = FastAPI(

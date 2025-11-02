@@ -4,13 +4,17 @@ import os
 
 class Settings(BaseSettings):
     # Database Configuration
-    # Pour déployer ailleurs : utiliser une variable d'environnement DATABASE_URL
-    database_url: str = "postgresql://postgres:0000@localhost:5432/fintel"
-    db_host: str = "localhost"
-    db_port: int = 5432
-    db_name: str = "fintel"
-    db_user: str = "postgres"
-    db_password: str = "0000"
+    # Pour déployer ailleurs : utiliser une variable d'environnement DATABASE_URL
+    # Si DATABASE_URL est défini dans l'environnement, il sera utilisé automatiquement
+    database_url: str = os.getenv(
+        "DATABASE_URL",
+        "postgresql://postgres:0000@localhost:5432/fintel"
+    )
+    db_host: str = os.getenv("DB_HOST", "localhost")
+    db_port: int = int(os.getenv("DB_PORT", "5432"))
+    db_name: str = os.getenv("DB_NAME", "fintel")
+    db_user: str = os.getenv("DB_USER", "postgres")
+    db_password: str = os.getenv("DB_PASSWORD", "0000")
     
     # JWT Configuration
     secret_key: str = "your-secret-key-here-change-in-production"

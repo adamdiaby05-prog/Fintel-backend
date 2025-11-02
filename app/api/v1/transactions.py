@@ -51,7 +51,7 @@ async def get_wallet(
                 detail="Utilisateur non trouvé"
             )
         wallet = transaction_service.get_or_create_wallet(user.id)
-        return wallet
+    return wallet
     
     # Si pas de numéro fourni, erreur
     raise HTTPException(
@@ -224,10 +224,10 @@ async def get_transaction_history(
                 detail="Utilisateur non trouvé"
             )
         
-        transactions = transaction_service.get_user_transactions(
+    transactions = transaction_service.get_user_transactions(
             user.id, limit, offset
-        )
-        return transactions
+    )
+    return transactions
     
     # Si pas de numéro fourni, erreur
     raise HTTPException(

@@ -36,8 +36,8 @@ class TransactionService:
         self.db.add(db_transaction)
         
         if auto_commit:
-            self.db.commit()
-            self.db.refresh(db_transaction)
+        self.db.commit()
+        self.db.refresh(db_transaction)
         # Si auto_commit=False, le commit sera fait par l'appelant
         
         return db_transaction
@@ -70,8 +70,8 @@ class TransactionService:
             db_transaction.reference = reference
         
         if auto_commit:
-            self.db.commit()
-            self.db.refresh(db_transaction)
+        self.db.commit()
+        self.db.refresh(db_transaction)
         # Si auto_commit=False, le commit sera fait par l'appelant
         
         return db_transaction
@@ -154,8 +154,8 @@ class TransactionService:
         
         # Commit seulement si auto_commit est True
         if auto_commit:
-            self.db.commit()
-            self.db.refresh(wallet)
+        self.db.commit()
+        self.db.refresh(wallet)
         
         print(f"💾 Solde mis à jour en mémoire: wallet.id={wallet.id}, user_id={wallet.user_id}, balance={wallet.balance} XOF, updated_at={wallet.updated_at} (commit: {'oui' if auto_commit else 'non'})")
         return wallet
