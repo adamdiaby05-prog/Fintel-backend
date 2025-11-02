@@ -36,8 +36,8 @@ class TransactionService:
         self.db.add(db_transaction)
         
         if auto_commit:
-        self.db.commit()
-        self.db.refresh(db_transaction)
+            self.db.commit()
+            self.db.refresh(db_transaction)
         # Si auto_commit=False, le commit sera fait par l'appelant
         
         return db_transaction
